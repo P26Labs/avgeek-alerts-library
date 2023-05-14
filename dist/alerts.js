@@ -36,13 +36,32 @@ class AvgeekAlerts {
             },
         });
     }
-    getHello() {
+    handleError(error) {
+        let response = error.response;
+        let result = (response === null || response === void 0 ? void 0 : response.data) || (response === null || response === void 0 ? void 0 : response.statusText) || response || error;
+        let status = (response === null || response === void 0 ? void 0 : response.status) || error.status || 500;
+        return {
+            success: false,
+            result: result,
+            status: status,
+        };
+    }
+    emailAuthSignIn({ email_body, email_recipients, }) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.axios_client.get('/hello');
-            return {
-                status: response.status,
-                message: response.data.message,
-            };
+            try {
+                const response = yield this.axios_client.post('/email/auth/sign-in', {
+                    email_body,
+                    email_recipients,
+                });
+                return {
+                    success: true,
+                    result: response.data,
+                    status: response.status,
+                };
+            }
+            catch (error) {
+                return this.handleError(error);
+            }
         });
     }
 }

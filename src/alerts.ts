@@ -9,16 +9,16 @@ import { EmailAuthSignIn } from './alerts';
 class AvgeekAlerts {
     private axios_client: AxiosInstance;
 
-    constructor(token: string, environment: string = 'production') {
+    constructor(jwt_token: string, environment: 'production' | 'staging' = 'production') {
         this.axios_client = axios.create({
             baseURL: environment === 'production' ? 'https://alerts.avgeek.io/api' : 'http://localhost:3001/api',
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${jwt_token}`,
             },
         });
     }
 
-    handleError(error: any) {
+    private handleError(error: any) {
         let response = error.response;
         let result = response?.data || response?.statusText || response || error;
         let status = response?.status || error.status || 500;
@@ -38,7 +38,7 @@ class AvgeekAlerts {
         email_recipients: string[] | string,
     }) {
         try {
-            const response = await this.axios_client.post('/email/auth/sign-in', {
+            const response = await this.axios_client.post('/email/auth-sign-in', {
                 email_body,
                 email_recipients,
             });
@@ -49,7 +49,7 @@ class AvgeekAlerts {
             };
         } catch (error: any) {
             return this.handleError(error);
-        }        
+        }
     }
 }
 
