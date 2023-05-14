@@ -4,6 +4,7 @@ export * from './interfaces/flight';
 export * from './interfaces/auth';
 
 import axios, { AxiosInstance } from 'axios';
+import { EmailAuthSignIn } from './alerts';
 
 class AvgeekAlerts {
     private axios_client: AxiosInstance;
@@ -17,12 +18,38 @@ class AvgeekAlerts {
         });
     }
 
-    async getHello() {
-        const response = await this.axios_client.get('/hello');
+    handleError(error: any) {
+        let response = error.response;
+        let result = response?.data || response?.statusText || response || error;
+        let status = response?.status || error.status || 500;
+    
         return {
-            status: response.status,
-            message: response.data.message,
+            success: false,
+            result: result,
+            status: status,
         };
+    }
+
+    async emailAuthSignIn({
+        email_body,
+        email_recipients,
+    }: {
+        email_body: EmailAuthSignIn,
+        email_recipients: string[] | string,
+    }) {
+        try {
+            const response = await this.axios_client.post('/email/auth/sign-in', {
+                email_body,
+                email_recipients,
+            });
+            return {
+                success: true,
+                result: response.data,
+                status: response.status,
+            };
+        } catch (error: any) {
+            return this.handleError(error);
+        }        
     }
 }
 
