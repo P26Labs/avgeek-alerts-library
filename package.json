@@ -1,0 +1,17 @@
+{
+  "name": "avgeek-alerts-library",
+  "version": "1.0.0",
+  "description": "Library to send alerts via Avgeek Alerts platform",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "typescript": "^5.0.4"
+  }
+}
