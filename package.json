@@ -2,8 +2,8 @@
   "name": "avgeek-alerts-library",
   "version": "1.0.0",
   "description": "Library to send alerts via Avgeek Alerts platform",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/alerts.js",
+  "types": "dist/alerts.d.ts",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build"

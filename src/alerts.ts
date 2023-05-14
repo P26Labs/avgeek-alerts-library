@@ -1,5 +1,8 @@
 // avgeek_alerts_library/src/alerts.ts
 
+export * from './interfaces/flight';
+export * from './interfaces/auth';
+
 import axios, { AxiosInstance } from 'axios';
 
 class AvgeekAlerts {

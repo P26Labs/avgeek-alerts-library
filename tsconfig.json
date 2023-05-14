@@ -1,10 +1,13 @@
 {
     "compilerOptions": {
-        "declaration": true,
-        "outDir": "./dist",
-        "rootDir": "./src",
-        "skipLibCheck": true
+      "target": "es2015",
+      "module": "commonjs",
+      "declaration": true,
+      "outDir": "./dist",
+      "strict": true,
+      "skipLibCheck": true
     },
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules"]
-}
+    "include": ["src"],
+    "exclude": ["node_modules", "**/__tests__/*"]
+  }
+  
