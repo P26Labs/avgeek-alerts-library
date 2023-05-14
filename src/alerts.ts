@@ -5,6 +5,16 @@ export * from './interfaces/auth';
 
 import axios, { AxiosInstance } from 'axios';
 import { EmailAuthSignIn } from './alerts';
+import { EmailAuthEmailUpdate } from './alerts';
+import { EmailAuthResetPassword } from './alerts';
+import { EmailAuthSignUp } from './alerts';
+import { EmailFlightAdd } from './alerts';
+import { EmailFlightArrivalDelay } from './alerts';
+import { EmailFlightCancel } from './alerts';
+import { EmailFlightCheckIn } from './alerts';
+import { EmailFlightLand } from './alerts';
+import { EmailFlightRemove } from './alerts';
+import { EmailFlightStatus } from './alerts';
 
 class AvgeekAlerts {
     private axios_client: AxiosInstance;
@@ -30,15 +40,17 @@ class AvgeekAlerts {
         };
     }
 
-    async emailAuthSignIn({
+    async sendEmail<T>({
+        endpoint,
         email_body,
         email_recipients,
     }: {
-        email_body: EmailAuthSignIn,
+        endpoint: string,
+        email_body: T,
         email_recipients: string[] | string,
     }) {
         try {
-            const response = await this.axios_client.post('/email/auth-sign-in', {
+            const response = await this.axios_client.post(endpoint, {
                 email_body,
                 email_recipients,
             });
@@ -51,6 +63,18 @@ class AvgeekAlerts {
             return this.handleError(error);
         }
     }
+
+    emailAuthEmailUpdate = (data: { email_body: EmailAuthEmailUpdate, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/auth-email-update', ...data });
+    emailAuthResetPassword = (data: { email_body: EmailAuthResetPassword, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/auth-reset-password', ...data });
+    emailAuthSignIn = (data: { email_body: EmailAuthSignIn, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/auth-sign-in', ...data });
+    emailAuthSignUp = (data: { email_body: EmailAuthSignUp, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/auth-sign-up', ...data });
+    emailFlightAdd = (data: { email_body: EmailFlightAdd, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-add', ...data });
+    emailFlightArrivalDelay = (data: { email_body: EmailFlightArrivalDelay, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-arrival-delay', ...data });
+    emailFlightCancel = (data: { email_body: EmailFlightCancel, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-cancel', ...data });
+    emailFlightCheckIn = (data: { email_body: EmailFlightCheckIn, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-check-in', ...data });
+    emailFlightLand = (data: { email_body: EmailFlightLand, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-land', ...data });
+    emailFlightRemove = (data: { email_body: EmailFlightRemove, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-remove', ...data });
+    emailFlightStatus = (data: { email_body: EmailFlightStatus, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-status', ...data });
 }
 
 export default AvgeekAlerts;

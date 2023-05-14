@@ -28,11 +28,11 @@ __exportStar(require("./interfaces/flight"), exports);
 __exportStar(require("./interfaces/auth"), exports);
 const axios_1 = require("axios");
 class AvgeekAlerts {
-    constructor(token, environment = 'production') {
+    constructor(jwt_token, environment = 'production') {
         this.axios_client = axios_1.default.create({
             baseURL: environment === 'production' ? 'https://alerts.avgeek.io/api' : 'http://localhost:3001/api',
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${jwt_token}`,
             },
         });
     }
@@ -49,7 +49,7 @@ class AvgeekAlerts {
     emailAuthSignIn({ email_body, email_recipients, }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axios_client.post('/email/auth/sign-in', {
+                const response = yield this.axios_client.post('/email/auth-sign-in', {
                     email_body,
                     email_recipients,
                 });
