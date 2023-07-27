@@ -40,7 +40,7 @@ class AvgeekAlerts {
         };
     }
 
-    async sendEmail<T>({
+    private async sendEmail<T>({
         endpoint,
         email_body,
         email_recipients,
