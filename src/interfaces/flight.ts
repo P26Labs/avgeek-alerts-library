@@ -20,8 +20,8 @@ export interface EmailFlightAdd {
     airline_name: string
     from_airport_name: string
     to_airport_name: string
-    actual_departure_date: Date
-    actual_arrival_date: Date
+    actual_departure_date: string
+    actual_arrival_date: string
     passenger_seat: string
     passenger_cabin: string
     passenger_pnr: string
