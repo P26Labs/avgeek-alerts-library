@@ -79,8 +79,22 @@ export interface EmailFlightAutoCheckInRequest {
     meal_preference: string;
 }
 
-export interface EmailFlightAutoCheckInInitiate extends EmailFlightAutoCheckInRequest {
+export interface EmailFlightAutoCheckInInitiate {
+    full_name: string;
+    iata_code: string;
+    flight_number: number;
+    airline_name: string;
+    from_airport_iata_code: string;
+    to_airport_iata_code: string;
+    from_airport_city: string;
+    to_airport_city: string;
+    departure_date_time: string;
+    seat_preference: string;
+    cabin_preference: string;
+    meal_preference: string;
     email_address: string;
+    internal_link: string;
+    flight_id: number;
 }
 
 export interface EmailFlightLand {
