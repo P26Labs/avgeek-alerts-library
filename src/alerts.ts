@@ -33,6 +33,8 @@ class AvgeekAlerts {
         let response = error.response;
         let result = response?.data || response?.statusText || response || error;
         let status = response?.status || error.status || 500;
+
+        console.log("Avgeek Alerts API Error", error)
     
         return {
             success: false,
@@ -55,6 +57,9 @@ class AvgeekAlerts {
                 email_body,
                 email_recipients,
             });
+
+            console.log("Avgeek Alerts API Response", response.status, response.data)
+
             return {
                 success: true,
                 result: response.data,
