@@ -53,8 +53,8 @@ export interface EmailFlightCheckIn {
     full_name: string
     iata_code: string
     flight_number: number
-    airlineName: string
-    checkInLink: string
+    airline_name: string
+    check_in_link: string
     from_airport_iata_code: string
     to_airport_iata_code: string
     from_airport_city: string
