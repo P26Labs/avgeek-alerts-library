@@ -16,6 +16,7 @@ import { EmailFlightLand } from './alerts';
 import { EmailFlightRemove } from './alerts';
 import { EmailFlightStatus } from './alerts';
 import { EmailFlightAutoCheckInRequest } from './alerts';
+import { EmailFlightAutoCheckInInitiate } from './alerts';
 
 class AvgeekAlerts {
     private axios_client: AxiosInstance;
@@ -79,6 +80,7 @@ class AvgeekAlerts {
     emailFlightCancel = (data: { email_body: EmailFlightCancel, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-cancel', ...data });
     emailFlightCheckIn = (data: { email_body: EmailFlightCheckIn, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-check-in', ...data });
     emailFlightAutoCheckInRequest = (data: { email_body: EmailFlightAutoCheckInRequest, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-auto-check-in-request', ...data });
+    emailFlightAutoCheckInInitiate = (data: { email_body: EmailFlightAutoCheckInInitiate, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-auto-check-in-initiate', ...data });
     emailFlightLand = (data: { email_body: EmailFlightLand, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-land', ...data });
     emailFlightRemove = (data: { email_body: EmailFlightRemove, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-remove', ...data });
     emailFlightStatus = (data: { email_body: EmailFlightStatus, email_recipients: string[] | string }) => this.sendEmail({ endpoint: '/email/flight-status', ...data });
