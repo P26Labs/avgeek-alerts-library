@@ -49,15 +49,18 @@ class AvgeekAlerts {
         endpoint,
         email_body,
         email_recipients,
+        email_attachment_url
     }: {
         endpoint: string,
         email_body: T,
         email_recipients: string[] | string,
+        email_attachment_url?: string
     }) {
         try {
             const response = await this.axios_client.post(endpoint, {
                 email_body,
                 email_recipients,
+                email_attachment_url
             });
 
             console.log("Avgeek Alerts API Response", response.status, response.data)
