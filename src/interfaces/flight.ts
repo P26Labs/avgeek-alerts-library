@@ -14,6 +14,19 @@ export interface EmailFlightArrivalDelay {
     next_status_check: string
 }
 
+export interface EmailSandboxFlightAdd {
+  full_name: string
+  iata_code: string
+  flight_number: number
+  from_airport_iata_code: string
+  to_airport_iata_code: string
+  from_airport_city: string
+  to_airport_city: string
+  flight_duration: string
+  departure_date_time: string
+  arrival_date_time: string
+}
+
 export interface EmailFlightAdd {
     flight_id: string
     passenger_full_name: string
